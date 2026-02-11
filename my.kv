@@ -1,0 +1,22 @@
+#:import PageAcc pageAcc
+#:import Mymap map2
+#:import NavigationScreenManager Navigation_screen_Manager
+
+#Mymap:
+#PageAcc:
+
+MyScreenManager:
+
+<MyScreenManager@NavigationScreenManager>:
+    Screen:
+        name: "Screen1"
+        Button:
+            text:"Button1"
+            on_press: root.transition.direction = "left"; root.current= "Screen2"
+
+    Screen:
+        name: "Screen2"
+        Button:
+            text:"Button2"
+            on_press: root.transition.direction = "right" ;root.current= root.previous()
+    

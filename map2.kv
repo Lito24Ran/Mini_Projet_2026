@@ -1,0 +1,15 @@
+#:import MapView kivy.garden.mapview.MapView 
+#:import MapMarkerPopup kivy_garden.mapview.MapMarkerPopup
+
+<Mymap>:
+    size_hint: 1, 1 
+    FloatLayout:
+        MapView:
+            lat: 36
+            lon: -115
+            zoom: 13
+
+            MapMarkerPopup:
+                lat: 36
+                lon: -115
+            
