@@ -1,20 +1,22 @@
 from kivy.uix.gridlayout import GridLayout
 from kivy.animation import Animation
 from kivy.lang import Builder
-
+import time
+from kivy.clock import Clock
 Builder.load_file('page.kv')
-
 class PageAcc(GridLayout) :
-    
-    def on_enter(self):
-        print("Démarrage animation...")
-        try:
-            progressbar = self.ids.my_progressbar
-            self.start_progress(progressbar)
-        except Exception as e:
-            print("Erreur:", e)
+        i = 0
+        valeur_pour_progressbar = 0
         
-    def start_progress(self, progressbar):
-        print(progressbar)
-        anim = Animation(value=100, duration=3)
-        anim.start(progressbar)
+        
+        def on_slider_active(self, widget):
+            print("Slider active:", widget.value)
+        
+        def loader(self, *args):
+            try:
+                self.i += 10
+                self.ids.progress.value = self.i
+            except:
+                Clock.unschedule(self.loader)
+        
+            

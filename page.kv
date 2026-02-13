@@ -1,3 +1,5 @@
+#:import ProgressBarWidget Progress_bar
+
 <PageAcc>:
     cols:1
     MDBoxLayout:
@@ -11,9 +13,9 @@
             Widget:
             
             Image:
-                source: "image/image_logo.jpeg"
+                source: "image/L.png"
                 size_hint: None, None
-                size: "200dp", "200dp"
+                size: "140dp", "129dp"
                 pos_hint: {"center_x": 0.5}
             
             Label:
@@ -24,22 +26,11 @@
                 size_hint_y: None
                 height: "30dp"
                 halign: "center"
-            
 
+            Widget:
             BoxLayout:
+
                 size_hint_y: None
                 height: "20dp"
-                
-
-                Widget:
-                
-                ProgressBar:
-                    id: my_progressbar 
-                    max: 100
-                    value: 0
-                    size_hint_x: 0.6
-                
-
-                Widget:
-
+                ProgressBarWidget:
             Widget:

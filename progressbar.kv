@@ -1,0 +1,30 @@
+
+<ProgressBarWidget>:
+    orientation: 'vertical'
+    spacing: dp(10)
+    
+    
+
+    MDBoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        height: dp(50)  # Donnez une hauteur au conteneur
+    
+    BoxLayout:
+        size_hint_x: 0.4 
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Centré
+        
+        ProgressBar:  
+            id: my_progressbar
+            max: 100
+            value: 0
+            size_hint_y: None
+            height: dp(8)
+
+      
+    #MDLabel:
+    #    id: progress_label
+    #    text: "0%"
+    #    halign: 'center'
+
+
