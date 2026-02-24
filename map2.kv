@@ -1,10 +1,11 @@
-#:import MapView kivy.garden.mapview.MapView 
+#:import MapView kivy_garden.mapview.MapView
 #:import MapMarkerPopup kivy_garden.mapview.MapMarkerPopup
 
 <Mymap>:
-    size_hint: 1, 1 
     FloatLayout:
         MapView:
+            size_hint : 1, 1
+            pos_hint:{"x" :0,"y":0}
             lat: 36
             lon: -115
             zoom: 13
@@ -12,4 +13,11 @@
             MapMarkerPopup:
                 lat: 36
                 lon: -115
-            
+
+                # Il manque un widget enfant ici !
+                Label:
+                    text: "Mon marqueur"
+                    size_hint: None, None
+                    size: 100, 40
+                
+ 

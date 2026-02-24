@@ -1,0 +1,16 @@
+<NavigationBar>:
+    orientation:"vertical"
+    size_hint_y: 1 
+    ActionBar:
+        size_hint_y:None
+        height:"48dp"
+        ActionView:
+            ActionPrevious:
+                #title:"map"
+                on_release:app.manager.pop()
+            ActionButton:
+                text:"Menu"
+            ActionButton:
+                text: "Post"
+            ActionButton:
+                text:"Ts aiko"

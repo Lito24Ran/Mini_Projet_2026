@@ -1,7 +1,9 @@
-
+from turtle import Screen
 from kivy.lang import Builder
 from kivy.clock import Clock
 from kivymd.uix.boxlayout import MDBoxLayout
+from Navigation_screen_Manager import NavigationScreenManager
+from kivy.uix.screenmanager import Screen
 
 Builder.load_file('progressbar.kv')
 
@@ -12,7 +14,8 @@ class ProgressBarWidget(MDBoxLayout) :
         self.i = 0
         # Démarrer automatiquement après initialisation
         Clock.schedule_once(self.start_loading, 0.5)
-    
+        self.push = False
+        
     def start_loading(self, dt):
         """Démarre le chargement"""
         self.i = 0
@@ -28,3 +31,8 @@ class ProgressBarWidget(MDBoxLayout) :
         if self.i >= 100:
             Clock.unschedule(self.loader)
             print("Chargement terminé!")
+            
+            self.ids.btn_container.opacity = 1
+            self.ids.btn_container.disabled = False
+
+            

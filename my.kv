@@ -2,26 +2,28 @@
 #:import Mymap map2
 #:import NavigationScreenManager Navigation_screen_Manager
 #:import ProgressBarWidget Progress_bar
+#:import navigation_bar Navigation_bar
 
 #ProgressBarWidget:
 #Mymap:
-PageAcc:
+#PageAcc:
 
-#MyScreenManager:
+<MyScreenManager>:
+    Screen:
+        name: "PageAccuil"
+        PageAcc:
+            #Eto zany dia mandeha ao @ le fonction push ilay Button d pusheny ao anaty tableau ilay izy
 
-<MyScreenManager@NavigationScreenManager>:
-    Screen:
-        name: "Screen1"
-        Button:
-            text:"Aler vers ma map"
-            on_press: root.push("Mymap") #Eto zany dia mandeha ao @ le fonction push ilay Button d pusheny ao anaty tableau ilay izy
-    Screen:
-        name: "Mymap"
-        Mymap:
+    Screen :
+        name:"Mymap"
+        NavigationBar:
+            #title:"mymap"
+            Mymap:
 
     Screen:
         name: "Screen2"
         Button:
             text:"Button2"
-            on_press: root.pop()
+            on_press: app.manager.pop()
+    
     
