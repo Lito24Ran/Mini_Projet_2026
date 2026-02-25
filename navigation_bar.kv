@@ -2,10 +2,46 @@
 #: set sy dp(62)
 
 <NavigationBar>:
-    canvas:
-        Color:
-            rgba:12/255,24/255,75/255,1
-        RoundedRectangle:
-            pos: self.center_x - self.width * 0.45, self.y + self.height * 0.02
-            size: self.width * 0.9, self.height * 0.1
-            radius: [dp(16)]
+    BoxLayout:
+        size_hint: .95, None
+        height: "50dp"
+        width : "330dp"
+        pos_hint: {"center_x": .5, "y": .03}
+        canvas.before:
+            Color:
+                rgba: 12/255, 24/255, 75/255, 1  # bleu foncé
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [25]
+
+        Button: 
+            background_color: 0, 0, 0, 0
+            color: 1, 1, 1, 
+            height: "50dp"
+            width : "330dp"
+            icon: "home"
+            Image:
+                source:"image/icons8-accueil-128.png"
+                size:"24dp","24dp"
+                center:self.parent.center
+
+        Button:
+            #text: "post"
+            background_color: 0, 0, 0, 0
+            height: "50dp"
+            width : "330dp"
+            Image: 
+                source: "image/icons8-ajouter-96.png"
+                size:"24dp","24dp"
+                center:self.parent.center
+
+        Button:
+            #text: "notif"
+            background_color: 0, 0, 0, 0
+            height: "50dp"
+            width : "330dp"
+            Image: 
+                source: "image/icons8-rappels-de-rendez-vous-100.png"
+                size:"24dp","24dp"
+                center:self.parent.center
