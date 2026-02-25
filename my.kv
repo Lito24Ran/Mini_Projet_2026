@@ -11,14 +11,27 @@
 <MyScreenManager>:
     Screen:
         name: "PageAccuil"
+        BoxLayout:
+            Button:
+                id: btn_container   
+                disabled: True
+                opacity:0
+                pos_hint:{ "right": .5 }
+                size_hint: None, None
+                #size: "100dp", "60dp"
+                width: "100dp"
+                height:"60dp"
+                text:">"
+                on_press: app.manager.push("Mymap")
         PageAcc:
             #Eto zany dia mandeha ao @ le fonction push ilay Button d pusheny ao anaty tableau ilay izy
 
     Screen :
         name:"Mymap"
-        NavigationBar:
-            #title:"mymap"
-            Mymap:
+        #NavigationBar:
+        #title:"mymap"
+        Mymap:
+            NavigationBar
 
     Screen:
         name: "Screen2"

@@ -1,16 +1,11 @@
+#: set sx dp(500) #declaration d' une variable dans un fichir kv
+#: set sy dp(62)
+
 <NavigationBar>:
-    orientation:"vertical"
-    size_hint_y: 1 
-    ActionBar:
-        size_hint_y:None
-        height:"48dp"
-        ActionView:
-            ActionPrevious:
-                #title:"map"
-                on_release:app.manager.pop()
-            ActionButton:
-                text:"Menu"
-            ActionButton:
-                text: "Post"
-            ActionButton:
-                text:"Ts aiko"
+    canvas:
+        Color:
+            rgba:12/255,24/255,75/255,1
+        RoundedRectangle:
+            pos: self.center_x - self.width * 0.45, self.y + self.height * 0.02
+            size: self.width * 0.9, self.height * 0.1
+            radius: [dp(16)]

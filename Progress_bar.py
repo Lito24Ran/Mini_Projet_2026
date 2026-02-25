@@ -31,8 +31,5 @@ class ProgressBarWidget(MDBoxLayout) :
         if self.i >= 100:
             Clock.unschedule(self.loader)
             print("Chargement terminé!")
-            
-            self.ids.btn_container.opacity = 1
-            self.ids.btn_container.disabled = False
 
             

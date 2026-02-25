@@ -26,11 +26,21 @@
                 size_hint_y: None
                 height: "30dp"
                 halign: "center"
-
             Widget:
-            BoxLayout:
-
-                size_hint_y: None
-                height: "20dp"
-                ProgressBarWidget:
-            Widget:
+            Button:
+                text: "Passer"
+                color: 1, 1, 1, 1
+                background_color: 0, 0, 0, 0  # transparent pour cacher le fond par défaut
+                size_hint: 1, None
+                height: "50dp"
+                width : "330dp"
+                pos_hint: {"center_x": .5}
+                on_press: app.manager.push("Mymap")
+                canvas.before:
+                    Color:
+                        rgba: 12/255, 24/255, 75/255, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [16]
+        
