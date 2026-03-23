@@ -8,24 +8,30 @@ MainWidget:
 
 <MainWidget>:
     recycleViews: recycleViews
-    RecycleView:
-        id: recycleViews
-        viewclass: 'MotoWidget'
-        canvas.before:
-            Color:
-                rgba: utils.get_color_from_hex('#FFFFFF')
-            Rectangle:
-                pos: self.pos
-                size: self.size
-        RecycleBoxLayout:
-            default_size: None, None
-            default_size_hint: 1, None
-            size_hint: None, None
-            width: self.parent.width - dp(5)
-            height: self.minimum_height
-            orientation: 'vertical'
-            spacing: dp(10)
-            padding: [dp(20), dp(50), dp(20), dp(10)]
+
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+
+        RecycleView:
+            id: recycleViews
+            viewclass: 'MotoWidget'
+
+            canvas.before:
+                Color:
+                    rgba: utils.get_color_from_hex('#FFFFFF')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            RecycleBoxLayout:
+                default_size: None, dp(80)   
+                default_size_hint: 1, None    
+                size_hint_y: None            
+                height: self.minimum_height  
+                orientation: 'vertical'
+                spacing: dp(10)
+                padding: [dp(20), dp(50), dp(20), dp(10)]
 
 
 
@@ -33,7 +39,7 @@ MainWidget:
     size_hint_y: None
     height: dp(80)
     orientation: "vertical"
-    pos_hint: {"top": 1}    # ← ancré en haut, grandit vers le bas
+    #pos_hint: {"top": 1}   
     padding: [0, dp(5), 0, dp(20)]
 
     canvas.before:

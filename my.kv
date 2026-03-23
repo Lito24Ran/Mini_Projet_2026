@@ -5,13 +5,14 @@
 #:import navigation_bar Navigation_bar
 #:import Bar_de_recherche Bar_de_recherche
 #:import DetailTaximoto DetailTaximoto
-#:import MotoWidget Container_liste_moto
 
 #ProgressBarWidget:
 #Mymap:
 #PageAcc:
 
 <MyScreenManager>:
+
+   
     Screen:
         name: "PageAccuil"
         BoxLayout:
@@ -35,7 +36,7 @@
         #title:"mymap"
         Mymap:
             NavigationBar
-            Bar_de_recherche
+            #Bar_de_recherche
     Screen:
         name:"MotoWidget"
         MotoWidget:
@@ -44,11 +45,15 @@
         name:"DetailTaximoto"
         DetailTaximoto:
     
+    MainWidget:
+        name:"liste_moto"
 
     Screen:
         name: "Screen2"
         Button:
             text:"Button2"
             on_press: app.manager.pop()
+
+    
     
     

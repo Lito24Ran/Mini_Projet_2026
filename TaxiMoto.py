@@ -15,4 +15,4 @@ class TaxiMoto:
         return self.nom
     
     def get_dictionary(self):
-        return {"nom" : self.nom , "disponibilte" : self.diponibilite, "lieu" : self.lieu, "description : " : self.description}
+        return {"nom" : self.nom , "disponible" : self.diponibilite, "lieu" : self.lieu, "description : " : self.description}

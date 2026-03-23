@@ -3,18 +3,42 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from Navigation_screen_Manager import NavigationScreenManager
-from map2 import Mymap 
+from map2 import Mymap
+from kivy.uix.boxlayout import BoxLayout
 from Progress_bar import ProgressBarWidget
+from Container_liste_moto import MainWidget
 from kivy.properties import ObjectProperty
 
-class MyScreenManager(NavigationScreenManager) :
+from kivy_garden.mapview import MapMarker
+import requests
+
+# charger le KV
+Builder.load_file("Moto.kv") 
+Builder.load_file("map2.kv")
+Builder.load_file("bar_de_recherche.kv")
+
+class MyScreenManager(NavigationScreenManager):
     pass
 
-class MyApp(MDApp) :
+
+class MyApp(MDApp):
+
     manager = ObjectProperty(None)
+
     def build(self):
-        self.manager = MyScreenManager() #ity d afaka mi conserver bcp de type de screen
-        return self.manager
+        try:
+            self.manager = MyScreenManager()
+            print("MyScreenManager créé ✅")
+            return self.manager
+        except Exception as e:
+            print(f"Erreur : {e}")             # ← voir l'erreur exacte
+            import traceback
+            traceback.print_exc()
+
+
+if __name__ == '__main__':
+    # def test_recherche(self):
+    #     print("Test méthode recherche - OK")
+    #     # self.rechercher()
     
-if __name__ == '__main__' :
     MyApp().run()

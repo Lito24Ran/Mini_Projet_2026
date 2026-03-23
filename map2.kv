@@ -1,22 +1,18 @@
-#:import MapView kivy_garden.mapview.MapView
-#:import MapMarkerPopup kivy_garden.mapview.MapMarkerPopup
-
 <Mymap>:
+    # Liaison des propriétés
+    mapview: mapview_widget
+    bar_recherche: bar_recherche_widget
+    
     FloatLayout:
         MapView:
-            size_hint : 1, 1
-            pos_hint:{"x" :0,"y":0}
-            lat: 36
-            lon: -115
-            zoom: 13
-
-            MapMarkerPopup:
-                lat: 36
-                lon: -115
-
-                Label:
-                    text: "Mon marqueur"
-                    size_hint: None, None
-                    size: 100, 40
-                
- 
+            id: mapview_widget  # ← ID important !
+            lat: -18.8792
+            lon: 47.5079
+            zoom: 10
+        
+        Bar_de_recherche:
+            id: bar_recherche_widget  # ← ID important !
+            mapview: mapview_widget  # ← LIAISON CRUCIALE !
+            pos_hint: {"center_x": 0.5, "top": 0.98}
+            size_hint: 0.9, None
+            height: "50dp"
