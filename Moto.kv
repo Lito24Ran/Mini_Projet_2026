@@ -1,0 +1,149 @@
+#: import utils kivy.utils
+#:set couleur_dispo  "#707070"
+#:set couleur_lieu "#989898"
+#:set bg_liste "#e9e9e9"
+#:set color_titre_moto "#212121"
+
+MainWidget:
+
+<MainWidget>:
+    recycleViews: recycleViews
+    RecycleView:
+        id: recycleViews
+        viewclass: 'MotoWidget'
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex('#FFFFFF')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        RecycleBoxLayout:
+            default_size: None, None
+            default_size_hint: 1, None
+            size_hint: None, None
+            width: self.parent.width - dp(5)
+            height: self.minimum_height
+            orientation: 'vertical'
+            spacing: dp(10)
+            padding: [dp(20), dp(50), dp(20), dp(10)]
+
+
+
+<MotoWidget>:
+    size_hint_y: None
+    height: dp(80)
+    orientation: "vertical"
+    pos_hint: {"top": 1}    # ← ancré en haut, grandit vers le bas
+    padding: [0, dp(5), 0, dp(20)]
+
+    canvas.before:
+        Color:
+            rgba: root.bg_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(10)]
+
+    BoxLayout:
+        size_hint_y: None
+        height: dp(80)
+        spacing: dp(10)
+        padding: [dp(10), dp(5), dp(10), dp(5)]
+
+        AsyncImage:
+            source: "profil.png"
+            size_hint: None, None
+            size: dp(50), dp(50)
+            pos_hint: {"center_y": 0.5}
+
+        BoxLayout:
+            orientation: "vertical"
+
+            TextAlignLeft:
+                text: root.nom
+                font_size: dp(18)
+                bold: True
+                color: utils.get_color_from_hex(color_titre_moto)
+
+            BoxLayout:
+                spacing: dp(10)
+                TextureSize:
+                    text: "Dispo" if root.disponibile else "Indisponible"
+                    color: utils.get_color_from_hex(couleur_dispo)
+                    bold: True
+                TextureSize:
+                    text: root.lieu
+                    color: utils.get_color_from_hex(couleur_lieu)
+
+        AsyncImage:
+            source: "moto.png"
+            size_hint: None, None
+            size: dp(60), dp(70)
+            pos_hint: {"center_y": 0.5}
+
+    BoxLayout:
+        id: detail_box
+        size_hint_y: None
+        height: 0               # ← fermé
+        opacity: 0
+        orientation: "vertical"
+        padding: [dp(10), dp(5), dp(10), dp(5)]
+        spacing: dp(8)
+
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex("#a4a4a4") + [1]
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(8)]
+
+        TextAlignLeft:
+            text: "Description"
+            font_size: dp(16)
+            bold: True
+            color: utils.get_color_from_hex(color_titre_moto)
+            size_hint_y: None
+            height: dp(20)
+
+        TextAlignLeft:
+            text: root.description
+            font_size: dp(13)
+            color: utils.get_color_from_hex(couleur_lieu)
+            size_hint_y: None
+            height: dp(60)
+
+    BoxLayout:
+        id: action_box
+        size_hint_y: None
+        height: 0               
+        opacity: 0
+        spacing: dp(20)
+        padding: [dp(10), 0, dp(10), 0]
+
+        Button:
+            text: "Facebook"
+            font_size: dp(13)
+            background_color: 0, 0, 0, 0
+            on_press: print("Facebook")
+
+        Button:
+            text: "WhatsApp"
+            font_size: dp(13)
+            background_color: 0, 0, 0, 0
+            on_press: print("WhatsApp")
+
+        Button:
+            text: "Appeler"
+            font_size: dp(13)
+            background_color: 0, 0, 0, 0
+            on_press: print("Appeler")
+
+<TextAlignLeft@Label>:
+    text_size: self.size
+    halign: "left"
+    valign: "center"
+
+<TextureSize@Label>:
+    size_hint: None, None
+    size: self.texture_size

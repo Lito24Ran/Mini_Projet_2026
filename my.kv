@@ -4,7 +4,8 @@
 #:import ProgressBarWidget Progress_bar
 #:import navigation_bar Navigation_bar
 #:import Bar_de_recherche Bar_de_recherche
-
+#:import DetailTaximoto DetailTaximoto
+#:import MotoWidget Container_liste_moto
 
 #ProgressBarWidget:
 #Mymap:
@@ -35,7 +36,14 @@
         Mymap:
             NavigationBar
             Bar_de_recherche
+    Screen:
+        name:"MotoWidget"
+        MotoWidget:
 
+    Screen:
+        name:"DetailTaximoto"
+        DetailTaximoto:
+    
 
     Screen:
         name: "Screen2"
