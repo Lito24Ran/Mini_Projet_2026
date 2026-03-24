@@ -40,7 +40,7 @@ MainWidget:
     height: dp(80)
     orientation: "vertical"
     #pos_hint: {"top": 1}   
-    padding: [0, dp(5), 0, dp(20)]
+    padding: [0, dp(5), 0, dp(5)]
 
     canvas.before:
         Color:
@@ -74,7 +74,7 @@ MainWidget:
             BoxLayout:
                 spacing: dp(10)
                 TextureSize:
-                    text: "Dispo" if root.disponibile else "Indisponible"
+                    text: "Indisponible" if  root.disponibile else "Dispo"
                     color: utils.get_color_from_hex(couleur_dispo)
                     bold: True
                 TextureSize:

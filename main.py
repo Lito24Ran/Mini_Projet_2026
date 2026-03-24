@@ -8,9 +8,8 @@ from kivy.uix.boxlayout import BoxLayout
 from Progress_bar import ProgressBarWidget
 from Container_liste_moto import MainWidget
 from kivy.properties import ObjectProperty
-
+from kivy.core.window import Window
 from kivy_garden.mapview import MapMarker
-import requests
 
 # charger le KV
 Builder.load_file("Moto.kv") 
@@ -22,7 +21,8 @@ class MyScreenManager(NavigationScreenManager):
 
 
 class MyApp(MDApp):
-
+    Window.size = (360,640)
+    Window.resizable = False
     manager = ObjectProperty(None)
 
     def build(self):
