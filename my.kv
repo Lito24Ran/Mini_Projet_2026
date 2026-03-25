@@ -5,6 +5,7 @@
 #:import navigation_bar Navigation_bar
 #:import Bar_de_recherche Bar_de_recherche
 #:import DetailTaximoto DetailTaximoto
+#import BarreRetour barreRetour
 
 #ProgressBarWidget:
 #Mymap:
@@ -45,9 +46,20 @@
         name:"DetailTaximoto"
         DetailTaximoto:
     
+    
     MainWidget:
         name:"liste_moto"
+        FloatLayout:
+            BarreRetour:
+                size_hint:1, None
+                pos_hint: {"x": 0, "y": .92} 
 
+        FloatLayout:
+            NavigationBar:                         
+                size_hint_y: None
+                height: dp(70)
+                pos_hint: {"x": 0, "y": .02}     
+                
     Screen:
         name: "Screen2"
         Button:

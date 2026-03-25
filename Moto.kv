@@ -3,6 +3,7 @@
 #:set couleur_lieu "#989898"
 #:set bg_liste "#e9e9e9"
 #:set color_titre_moto "#212121"
+#import BarreRetour barreRetour
 
 MainWidget:
 
@@ -12,6 +13,8 @@ MainWidget:
     BoxLayout:
         size: root.size
         pos: root.pos
+
+       
 
         RecycleView:
             id: recycleViews
@@ -25,10 +28,10 @@ MainWidget:
                     size: self.size
 
             RecycleBoxLayout:
-                default_size: None, dp(80)   
-                default_size_hint: 1, None    
-                size_hint_y: None            
-                height: self.minimum_height  
+                default_size: None, dp(80)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
                 orientation: 'vertical'
                 spacing: dp(10)
                 padding: [dp(20), dp(50), dp(20), dp(10)]
@@ -36,6 +39,7 @@ MainWidget:
 
 
 <MotoWidget>:
+   
     size_hint_y: None
     height: dp(80)
     orientation: "vertical"

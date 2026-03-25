@@ -1,6 +1,6 @@
 #: set sx dp(500) #declaration d' une variable dans un fichir kv
 #: set sy dp(62)
-
+#:import Mymap map2
 <NavigationBar>:
     BoxLayout:
         size_hint: .95, None
@@ -21,6 +21,7 @@
             height: "50dp"
             width : "330dp"
             icon: "home"
+            on_press: app.manager.pop()
             Image:
                 source:"image/icons8-accueil-128.png"
                 size:"24dp","24dp"

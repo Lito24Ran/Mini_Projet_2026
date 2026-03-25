@@ -10,10 +10,12 @@ from Container_liste_moto import MainWidget
 from kivy.properties import ObjectProperty
 from kivy.core.window import Window
 from kivy_garden.mapview import MapMarker
+from barreRetour import BarreRetour
 
 # charger le KV
 Builder.load_file("Moto.kv") 
 Builder.load_file("map2.kv")
+Builder.load_file("BarreRetour.kv")
 Builder.load_file("bar_de_recherche.kv")
 
 class MyScreenManager(NavigationScreenManager):
@@ -31,7 +33,7 @@ class MyApp(MDApp):
             print("MyScreenManager créé ✅")
             return self.manager
         except Exception as e:
-            print(f"Erreur : {e}")             # ← voir l'erreur exacte
+            print(f"Erreur : {e}")            
             import traceback
             traceback.print_exc()
 
