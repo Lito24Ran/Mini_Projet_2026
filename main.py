@@ -11,6 +11,7 @@ from kivy.properties import ObjectProperty
 from kivy.core.window import Window
 from kivy_garden.mapview import MapMarker
 from barreRetour import BarreRetour
+from kivy.properties import StringProperty
 
 # charger le KV
 Builder.load_file("Moto.kv") 
@@ -25,6 +26,7 @@ class MyScreenManager(NavigationScreenManager):
 class MyApp(MDApp):
     Window.size = (360,640)
     Window.resizable = False
+    lieu_recherche = StringProperty("") 
     manager = ObjectProperty(None)
 
     def build(self):

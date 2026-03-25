@@ -10,6 +10,7 @@ from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.screenmanager import Screen
 from kivy.properties import ListProperty
 from kivy.clock import Clock
+from kivymd.app import MDApp
 
 # Builder.load_file('Moto.kv')
 
@@ -52,12 +53,14 @@ class MainWidget(Screen) :
     
     recycleViews = ObjectProperty(None)
     expanded = BooleanProperty(False)
+    app = MDApp.get_running_app()
+    
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        
+        self.lieu = "" 
         self.motos = [
-            TaxiMoto("moto1", False, "Analakely", "Le Lorem Ipsum est un texte de remplissage utilisé dans le secteur de l'imprimerie et de la composition. Depuis le XVIe siècle, il sert de texte factice standard, lorsqu'un imprimeur anonyme a mélangé des caractères pour créer un livre d'exemples typographiques. Il a traversé les siècles, s'adaptant même à la composition électronique, sans subir de modifications majeures. Sa popularité a explosé dans les années 1960 avec la commercialisation des feuilles Letraset contenant des extraits de Lorem Ipsum, puis plus récemment avec les logiciels de PAO comme Aldus PageMaker, qui intègrent des versions de ce texte."),
+            TaxiMoto("moto1", False, self.lieu, "Le Lorem Ipsum est un texte de remplissage utilisé dans le secteur de l'imprimerie et de la composition. Depuis le XVIe siècle, il sert de texte factice standard, lorsqu'un imprimeur anonyme a mélangé des caractères pour créer un livre d'exemples typographiques. Il a traversé les siècles, s'adaptant même à la composition électronique, sans subir de modifications majeures. Sa popularité a explosé dans les années 1960 avec la commercialisation des feuilles Letraset contenant des extraits de Lorem Ipsum, puis plus récemment avec les logiciels de PAO comme Aldus PageMaker, qui intègrent des versions de ce texte."),
             TaxiMoto("moto2", True, "Ambojanahary", "Le Lorem Ipsum est un texte de remplissage utilisé dans le secteur de l'imprimerie et de la composition. Depuis le XVIe siècle, il sert de texte factice standard, lorsqu'un imprimeur anonyme a mélangé des caractères pour créer un livre d'exemples typographiques. Il a traversé les siècles, s'adaptant même à la composition électronique, sans subir de modifications majeures. Sa popularité a explosé dans les années 1960 avec la commercialisation des feuilles Letraset contenant des extraits de Lorem Ipsum, puis plus récemment avec les logiciels de PAO comme Aldus PageMaker, qui intègrent des versions de ce texte."),
             TaxiMoto("moto3", True, "Analamahitsy", "Le Lorem Ipsum est un texte de remplissage utilisé dans le secteur de l'imprimerie et de la composition. Depuis le XVIe siècle, il sert de texte factice standard, lorsqu'un imprimeur anonyme a mélangé des caractères pour créer un livre d'exemples typographiques. Il a traversé les siècles, s'adaptant même à la composition électronique, sans subir de modifications majeures. Sa popularité a explosé dans les années 1960 avec la commercialisation des feuilles Letraset contenant des extraits de Lorem Ipsum, puis plus récemment avec les logiciels de PAO comme Aldus PageMaker, qui intègrent des versions de ce texte."),   
             TaxiMoto("KotoZafy", False, "Analamahitsy", "Le Lorem Ipsum est un texte de remplissage utilisé dans le secteur de l'imprimerie et de la composition. Depuis le XVIe siècle, il sert de texte factice standard, lorsqu'un imprimeur anonyme a mélangé des caractères pour créer un livre d'exemples typographiques. Il a traversé les siècles, s'adaptant même à la composition électronique, sans subir de modifications majeures. Sa popularité a explosé dans les années 1960 avec la commercialisation des feuilles Letraset contenant des extraits de Lorem Ipsum, puis plus récemment avec les logiciels de PAO comme Aldus PageMaker, qui intègrent des versions de ce texte."),   
@@ -65,11 +68,20 @@ class MainWidget(Screen) :
             TaxiMoto("Rakoto", True, "Analamahitsy", "Le Lorem Ipsum est un texte de remplissage utilisé dans le secteur de l'imprimerie et de la composition. Depuis le XVIe siècle, il sert de texte factice standard, lorsqu'un imprimeur anonyme a mélangé des caractères pour créer un livre d'exemples typographiques. Il a traversé les siècles, s'adaptant même à la composition électronique, sans subir de modifications majeures. Sa popularité a explosé dans les années 1960 avec la commercialisation des feuilles Letraset contenant des extraits de Lorem Ipsum, puis plus récemment avec les logiciels de PAO comme Aldus PageMaker, qui intègrent des versions de ce texte."),   
         ]
         Clock.schedule_once(self.charger_donnees, 0)
-    
+        
+    def on_enter(self):                        
+        app = MDApp.get_running_app()           
+        self.lieu = app.lieu_recherche
+        print(f"Lieu reçu : {self.lieu}")
+
+        if self.lieu:
+            for moto in self.motos:
+                moto.lieu = self.lieu  
+        else:
+            self.charger_donnees(0)  
         
     def charger_donnees(self, dt):
         if 'recycleViews' in self.ids:
-            data = [moto.get_dictionary() for moto in self.motos]
-            print(f"Nombre de motos : {len(data)}")   
-            print(f"Données : {data}")                 
-            self.ids['recycleViews'].data = data
+            self.ids['recycleViews'].data = [
+                m.get_dictionary() for m in self.motos
+            ]

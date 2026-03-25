@@ -42,6 +42,7 @@ class Bar_de_recherche(FloatLayout):
             data = response.json()
             app = MDApp.get_running_app()
             app.manager.push("liste_moto") 
+            app.lieu_recherche = texte  
 
             if data:
 
