@@ -46,7 +46,7 @@ class MotoWidget(BoxLayout):
             app.manager.push("detailMoto")  
             screen = app.manager.get_screen("detailMoto")
             detail = screen.ids.detail_widget
-
+            
             detail.nom         = self.nom
             detail.lieu        = self.lieu
             detail.disponibile = self.disponibile
