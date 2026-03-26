@@ -6,12 +6,10 @@
 #:import Bar_de_recherche Bar_de_recherche
 #:import DetailTaximoto DetailTaximoto
 #import BarreRetour barreRetour
-#:import DetailTaximoto DetailTaximoto
+
 
 
 <MyScreenManager>:
-
-   
     Screen:
         name: "PageAccuil"
         BoxLayout:
@@ -28,7 +26,15 @@
                 on_press: app.manager.push("Mymap")
         PageAcc:
             #Eto zany dia mandeha ao @ le fonction push ilay Button d pusheny ao anaty tableau ilay izy
-    
+
+    DetailTaximoto:
+        name: "detailMoto" 
+        FloatLayout:
+            NavigationBar:                         
+                size_hint_y: None
+                height: dp(70)
+                pos_hint: {"x": 0, "y": .02}   
+
     Screen :
         name:"Mymap"
         #NavigationBar:
@@ -40,11 +46,6 @@
         name:"MotoWidget"
         MotoWidget:
 
-    Screen:
-        name:"DetailTaximoto"
-        DetailTaximoto:
-    
-    
     MainWidget:
         name:"liste_moto"
         FloatLayout:
@@ -56,7 +57,8 @@
             NavigationBar:                         
                 size_hint_y: None
                 height: dp(70)
-                pos_hint: {"x": 0, "y": .02}     
+                pos_hint: {"x": 0, "y": .02}    
+  
 
     Screen:
         name: "detailMoto"

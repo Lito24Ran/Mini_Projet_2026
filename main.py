@@ -11,7 +11,7 @@ from kivy.properties import ObjectProperty
 from kivy.core.window import Window
 from kivy_garden.mapview import MapMarker
 from barreRetour import BarreRetour
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, BooleanProperty
 
 # charger le KV
 Builder.load_file("Moto.kv") 
@@ -28,6 +28,17 @@ class MyApp(MDApp):
     Window.resizable = False
     lieu_recherche = StringProperty("") 
     manager = ObjectProperty(None)
+    moto_nom         = StringProperty("")    
+    moto_lieu        = StringProperty("")    
+    moto_disponibile = BooleanProperty(True)  
+    moto_description = StringProperty("")
+    
+    def on_moto_nom(self, instance, value):      
+        print(f"moto_nom reçu : {value}")
+
+    def on_moto_lieu(self, instance, value):     
+        print(f"moto_lieu reçu : {value}")
+        
 
     def build(self):
         try:
@@ -41,8 +52,4 @@ class MyApp(MDApp):
 
 
 if __name__ == '__main__':
-    # def test_recherche(self):
-    #     print("Test méthode recherche - OK")
-    #     # self.rechercher()
-    
     MyApp().run()

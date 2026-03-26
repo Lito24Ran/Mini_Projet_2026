@@ -44,13 +44,14 @@ class MotoWidget(BoxLayout):
         if self.collide_point(*touch.pos):
             app = MDApp.get_running_app()
             app.manager.push("detailMoto")  
-            screen = app.manager.get_screen("detailMoto")
-            detail = screen.ids.detail_widget
+            app = MDApp.get_running_app()
+
+            app.moto_nom         = self.nom
+            app.moto_lieu        = self.lieu
+            app.moto_disponibile = self.disponibile
+            app.moto_description = self.description
             
-            detail.nom         = self.nom
-            detail.lieu        = self.lieu
-            detail.disponibile = self.disponibile
-            detail.description = self.description
+            print(f"le nom est {self.nom}")
         return super().on_touch_up(touch)
     
     def _get_recycle_view(self):
@@ -67,7 +68,6 @@ class MainWidget(Screen) :
     expanded = BooleanProperty(False)
     app = MDApp.get_running_app()
     
-    
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.lieu = "" 
@@ -80,10 +80,7 @@ class MainWidget(Screen) :
             TaxiMoto("Rakoto", True, "Analamahitsy", "Le Lorem Ipsum est un texte de remplissage utilisé dans le secteur de l'imprimerie et de la composition. Depuis le XVIe siècle, il sert de texte factice standard, lorsqu'un imprimeur anonyme a mélangé des caractères pour créer un livre d'exemples typographiques. Il a traversé les siècles, s'adaptant même à la composition électronique, sans subir de modifications majeures. Sa popularité a explosé dans les années 1960 avec la commercialisation des feuilles Letraset contenant des extraits de Lorem Ipsum, puis plus récemment avec les logiciels de PAO comme Aldus PageMaker, qui intègrent des versions de ce texte."),   
         ]
         Clock.schedule_once(self.charger_donnees, 0)
-        
 
-
-        
     def on_enter(self):                        
         app = MDApp.get_running_app()           
         self.lieu = app.lieu_recherche
@@ -93,7 +90,8 @@ class MainWidget(Screen) :
             for moto in self.motos:
                 moto.lieu = self.lieu  
         else:
-            self.charger_donnees(0)  
+            self.charger_donnees(0)
+            
         
     def charger_donnees(self, dt):
         if 'recycleViews' in self.ids:

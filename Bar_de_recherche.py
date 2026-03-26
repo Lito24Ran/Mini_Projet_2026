@@ -18,9 +18,9 @@ class Bar_de_recherche(FloatLayout):
 
     def rechercher(self):
 
-        texte = self.ids.search_input.text.strip()
+        self.texte = self.ids.search_input.text.strip()
 
-        if not texte:
+        if not self.texte:
             print("Champ vide")
             return
         try:
@@ -31,7 +31,7 @@ class Bar_de_recherche(FloatLayout):
                     self.mapview.remove_widget(child)
 
             # requête vers OpenStreetMap
-            url = f"https://nominatim.openstreetmap.org/search?q={texte}&format=json&limit=1"
+            url = f"https://nominatim.openstreetmap.org/search?q={self.texte}&format=json&limit=1"
 
             headers = {
                 "User-Agent": "MiniProjetKivyMap/1.0"
@@ -40,10 +40,11 @@ class Bar_de_recherche(FloatLayout):
             response = requests.get(url, headers=headers, timeout=5)
 
             data = response.json()
+            
             app = MDApp.get_running_app()
             app.manager.push("liste_moto") 
-            app.lieu_recherche = texte  
-
+            app.lieu_recherche = self.texte  
+            
             if data:
 
                 lat = float(data[0]["lat"])
@@ -57,10 +58,10 @@ class Bar_de_recherche(FloatLayout):
                 # déplacer la carte
                 self.mapview.center_on(lat, lon)
 
-                print("Lieu trouvé :", texte)
+                print("Lieu trouvé :", self.texte)
 
             else:
-                print("Aucun résultat pour :", texte)
+                print("Aucun résultat pour :", self.texte)
 
         except Exception as e:
             print("Erreur recherche :", e)
@@ -70,7 +71,8 @@ class Bar_de_recherche(FloatLayout):
 
     def on_search_button(self):
         self.rechercher()  # Appelle la méthode existante
-
+        
+        
     def centrer(self):
 
         if self.mapview:
