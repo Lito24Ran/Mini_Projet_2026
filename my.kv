@@ -29,6 +29,10 @@
 
     DetailTaximoto:
         name: "detailMoto" 
+
+        BarreRetour:
+            size_hint:1, None
+
         FloatLayout:
             NavigationBar:                         
                 size_hint_y: None
@@ -46,19 +50,22 @@
         name:"MotoWidget"
         MotoWidget:
 
+    PostScreen:
+        name: "postscreen"
+    ListScreen:
+        name: "list"
+    
     MainWidget:
         name:"liste_moto"
-        FloatLayout:
-            BarreRetour:
-                size_hint:1, None
-                pos_hint: {"x": 0, "y": .92} 
+        BarreRetour:
+            size_hint:1, None
+             
 
         FloatLayout:
             NavigationBar:                         
                 size_hint_y: None
                 height: dp(70)
                 pos_hint: {"x": 0, "y": .02}    
-  
 
     Screen:
         name: "detailMoto"

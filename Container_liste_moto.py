@@ -11,6 +11,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import ListProperty
 from kivy.clock import Clock
 from kivymd.app import MDApp
+from barreRetour import BarreRetour
 # Builder.load_file('Moto.kv')
 
 class SelectableLabel(RecycleDataViewBehavior):
@@ -63,6 +64,7 @@ class MotoWidget(BoxLayout):
         return None
             
 class MainWidget(Screen) :
+    BarreRetour
     
     recycleViews = ObjectProperty(None)
     expanded = BooleanProperty(False)

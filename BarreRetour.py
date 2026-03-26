@@ -6,6 +6,6 @@ from kivy.properties import StringProperty
 
 Builder.load_file("BarreRetour.kv")
 
-class BarreRetour(BoxLayout):
+class BarreRetour(FloatLayout):
     titre = StringProperty("Liste Taxi moto")            
     pass

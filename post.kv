@@ -1,0 +1,78 @@
+<PostScreen>:
+    name: "post"                        # ← AJOUT obligatoire
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Publier une course"
+            md_bg_color: 0.05, 0.1, 0.3, 1
+            specific_text_color: 1, 1, 1, 1
+            left_action_items: [["arrow-left", lambda x: app.go_main()]] 
+            right_action_items: [["format-list-bulleted", lambda x: app.go_list()]]  # ← app
+
+        ScrollView:
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(20)
+                spacing: dp(15)
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDTextField:
+                    id: zone
+                    hint_text: "Zone"
+
+                MDTextField:
+                    id: depart
+                    hint_text: "Point de départ"
+
+                MDTextField:
+                    id: debut
+                    hint_text: "Heure début"
+
+                MDTextField:
+                    id: fin
+                    hint_text: "Heure fin"
+
+                MDTextField:
+                    id: tarif
+                    hint_text: "Tarif (Ar)"
+
+                MDTextField:
+                    id: moto
+                    hint_text: "Moto"
+
+                MDTextField:
+                    id: contact
+                    hint_text: "Contact"
+
+                Button:
+                    text: "Publier"
+                    background_color: 0.05, 0.1, 0.3, 1    # ← remplace md_bg_color
+                    background_normal: ""                    # ← supprime le style par défaut
+                    color: 1, 1, 1, 1                        # ← texte blanc
+                    size_hint_x: 1
+                    size_hint_y: None
+                    height: dp(50)
+                    font_size: dp(16)
+                    bold: True
+                    on_press: root.publish_post()
+
+
+
+<ListScreen>:
+    name: "list"
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Mes courses publiées"
+            md_bg_color: 0.05,0.1,0.3,1
+            specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: app.go_post()]]
+
+        ScrollView:
+            MDList:
+                id: posts_box

@@ -11,6 +11,7 @@ from kivy.properties import ObjectProperty
 from kivy.core.window import Window
 from kivy_garden.mapview import MapMarker
 from barreRetour import BarreRetour
+from post import PostScreen, ListScreen
 from kivy.properties import StringProperty, BooleanProperty
 
 # charger le KV
@@ -18,6 +19,8 @@ Builder.load_file("Moto.kv")
 Builder.load_file("map2.kv")
 Builder.load_file("BarreRetour.kv")
 Builder.load_file("bar_de_recherche.kv")
+Builder.load_file("post.kv")
+
 
 class MyScreenManager(NavigationScreenManager):
     pass
@@ -42,6 +45,8 @@ class MyApp(MDApp):
 
     def build(self):
         try:
+            self.posts = []          # ← déjà présent
+            self.edit_index = None
             self.manager = MyScreenManager()
             print("MyScreenManager créé ✅")
             return self.manager
@@ -49,6 +54,26 @@ class MyApp(MDApp):
             print(f"Erreur : {e}")            
             import traceback
             traceback.print_exc()
+            
+    def go_main(self):
+        self.manager.pop() 
+    def go_list(self):
+        self.root.current = "list"
+        self.root.get_screen("list").load_posts()  # ← charge les posts
+
+    def go_post(self):
+        self.root.current = "postscreen"
+
+    def edit_post(self, index):
+        if index < 0 or index >= len(self.posts):
+            return
+        self.edit_index = index
+        post = self.posts[index]
+        ids = self.root.get_screen("postscreen").ids
+        for key in post:
+            if key in ids:
+                ids[key].text = post[key]
+        self.root.current = "postscreen"
 
 
 if __name__ == '__main__':

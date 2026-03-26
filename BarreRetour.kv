@@ -1,21 +1,15 @@
 <BarreRetour>:
-    size_hint_y: None
-    height: dp(56)
-    orientation: "horizontal"
+    FloatLayout: 
+        
+        size_hint_y: None
+        height: dp(56)
+        orientation: "vertical"
+        pos_hint:{"x":0, "y":7.5}
 
-    canvas.before:
-        Color:
-            rgba: 1, 1, 1, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-    Label:
-        text: root.titre
-        font_size: dp(20)
-        bold: True
-        color: 0, 0, 0, 1
-        halign: "center"
-        valign: "center"
-        text_size: self.size
-        padding: [0, dp(10), 0, 0]    # ← pousse le texte vers le bas
+        MDTopAppBar:                 
+            title: "Liste Taxi Moto"
+            md_bg_color: 0.95, 0.95, 0.95, 1
+            specific_text_color: 0.1, 0.1, 0.1, 1
+            left_action_items: [["arrow-left", lambda x: app.go_main()]]
+            pos_hint: {"top": 1}  
+            #right_action_items: [["format-list-bulleted", lambda x: app.go_list()]]
