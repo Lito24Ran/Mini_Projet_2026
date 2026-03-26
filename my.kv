@@ -6,10 +6,8 @@
 #:import Bar_de_recherche Bar_de_recherche
 #:import DetailTaximoto DetailTaximoto
 #import BarreRetour barreRetour
+#:import DetailTaximoto DetailTaximoto
 
-#ProgressBarWidget:
-#Mymap:
-#PageAcc:
 
 <MyScreenManager>:
 
@@ -30,7 +28,7 @@
                 on_press: app.manager.push("Mymap")
         PageAcc:
             #Eto zany dia mandeha ao @ le fonction push ilay Button d pusheny ao anaty tableau ilay izy
-
+    
     Screen :
         name:"Mymap"
         #NavigationBar:
@@ -59,7 +57,16 @@
                 size_hint_y: None
                 height: dp(70)
                 pos_hint: {"x": 0, "y": .02}     
-                
+
+    Screen:
+        name: "detailMoto"
+        DetailTaximoto:
+        FloatLayout:
+            NavigationBar:                         
+                size_hint_y: None
+                height: dp(70)
+                pos_hint: {"x": 0, "y": .02}     
+
     Screen:
         name: "Screen2"
         Button:

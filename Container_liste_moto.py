@@ -11,7 +11,6 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import ListProperty
 from kivy.clock import Clock
 from kivymd.app import MDApp
-
 # Builder.load_file('Moto.kv')
 
 class SelectableLabel(RecycleDataViewBehavior):
@@ -41,6 +40,19 @@ class MotoWidget(BoxLayout):
     bg_color = ListProperty([0.96, 0.96, 0.96, 1]) 
     description = StringProperty()
     
+    def on_touch_up(self, touch):
+        if self.collide_point(*touch.pos):
+            app = MDApp.get_running_app()
+            app.manager.push("detailMoto")  
+            screen = app.manager.get_screen("detailMoto")
+            detail = screen.ids.detail_widget
+
+            detail.nom         = self.nom
+            detail.lieu        = self.lieu
+            detail.disponibile = self.disponibile
+            detail.description = self.description
+        return super().on_touch_up(touch)
+    
     def _get_recycle_view(self):
         parent = self.parent
         while parent:
@@ -68,6 +80,9 @@ class MainWidget(Screen) :
             TaxiMoto("Rakoto", True, "Analamahitsy", "Le Lorem Ipsum est un texte de remplissage utilisé dans le secteur de l'imprimerie et de la composition. Depuis le XVIe siècle, il sert de texte factice standard, lorsqu'un imprimeur anonyme a mélangé des caractères pour créer un livre d'exemples typographiques. Il a traversé les siècles, s'adaptant même à la composition électronique, sans subir de modifications majeures. Sa popularité a explosé dans les années 1960 avec la commercialisation des feuilles Letraset contenant des extraits de Lorem Ipsum, puis plus récemment avec les logiciels de PAO comme Aldus PageMaker, qui intègrent des versions de ce texte."),   
         ]
         Clock.schedule_once(self.charger_donnees, 0)
+        
+
+
         
     def on_enter(self):                        
         app = MDApp.get_running_app()           
