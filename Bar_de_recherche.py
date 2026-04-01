@@ -13,7 +13,7 @@ class Bar_de_recherche(FloatLayout):
 
     # liaison avec MapView dans le KV
     mapview = ObjectProperty(None)
-    derniere_requete = 0  # Ajoute cette ligne
+    derniere_requete = 0  
     marqueurs_existants = [] 
 
     def rechercher(self):
@@ -70,7 +70,7 @@ class Bar_de_recherche(FloatLayout):
         self.ids.search_input.text = ""
 
     def on_search_button(self):
-        self.rechercher()  # Appelle la méthode existante
+        self.rechercher()  
         
         
     def centrer(self):

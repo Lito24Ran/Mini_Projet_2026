@@ -6,7 +6,7 @@
 #:import Bar_de_recherche Bar_de_recherche
 #:import DetailTaximoto DetailTaximoto
 #import BarreRetour barreRetour
-
+#:import PageNotification Page_Notification
 
 
 <MyScreenManager>:
@@ -39,6 +39,10 @@
                 height: dp(70)
                 pos_hint: {"x": 0, "y": .02}   
 
+    Screen :
+        name: "notif"
+        PageNotification:
+        
     Screen :
         name:"Mymap"
         #NavigationBar:

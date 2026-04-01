@@ -20,4 +20,4 @@ class DetailTaximoto(Screen):
         self.lieu = app.lieu_recherche
         self.disponibile = app.moto_disponibile
         self.description = app.moto_description
-        print(f"app.moto_nom : {app.moto_nom} , lieu {app.lieu_recherche}, disponibilite: {app.moto_disponibile}")
+        print(f"app.moto_nom : {app.moto_nom} , lieu {app.lieu_recherche}, disponibilite: {app.moto_disponibile}, description: {app.moto_description}")

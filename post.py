@@ -11,17 +11,13 @@ from kivymd.uix.list import MDList
 from kivymd.uix.snackbar import MDSnackbar
 
 
-KV = """
-
-"""
-
 #Builder.load_file("post.kv")
 
 class PostScreen(Screen):
     
     def publish_post(self):
-        app = MDApp.get_running_app()   # ← accès à l'app
-        ids = self.ids                  # ← self.ids, pas self.root.get_screen(...)
+        app = MDApp.get_running_app() 
+        ids = self.ids                 
 
         data = {
             "zone":    ids.zone.text.strip(),
@@ -43,16 +39,16 @@ class PostScreen(Screen):
                 MDSnackbar(MDLabel(text=message)).open()
                 return
 
-        if app.edit_index is not None:          # ← app.edit_index
-            app.posts[app.edit_index] = data    # ← app.posts
+        if app.edit_index is not None:          
+            app.posts[app.edit_index] = data   
             app.edit_index = None
             MDSnackbar(MDLabel(text="Post modifé")).open()
         else:
-            app.posts.append(data)              # ← app.posts
+            app.posts.append(data)             
             MDSnackbar(MDLabel(text="course publier")).open()
 
         self.clear_fields()
-        app.go_list()                           # ← app.go_list()
+        app.go_list()                           
 
     def clear_fields(self):
         for f in self.ids:
@@ -66,7 +62,7 @@ class ListScreen(Screen):
         box = self.ids.posts_box
         box.clear_widgets()
 
-        for i, post in enumerate(app.posts):    # ← app.posts
+        for i, post in enumerate(app.posts):    
             card = MDCard(
                 orientation="vertical",
                 padding=dp(12),

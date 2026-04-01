@@ -12,6 +12,7 @@ from kivy.core.window import Window
 from kivy_garden.mapview import MapMarker
 from barreRetour import BarreRetour
 from post import PostScreen, ListScreen
+from Page_Notification import PageNotification
 from kivy.properties import StringProperty, BooleanProperty
 
 # charger le KV
@@ -41,11 +42,14 @@ class MyApp(MDApp):
 
     def on_moto_lieu(self, instance, value):     
         print(f"moto_lieu reçu : {value}")
+    
+    def on_moto_description(self, instance, value):
+        print(f"La valeur est {value}")
         
 
     def build(self):
         try:
-            self.posts = []          # ← déjà présent
+            self.posts = []         
             self.edit_index = None
             self.manager = MyScreenManager()
             print("MyScreenManager créé ✅")
@@ -57,9 +61,10 @@ class MyApp(MDApp):
             
     def go_main(self):
         self.manager.pop() 
+        
     def go_list(self):
         self.root.current = "list"
-        self.root.get_screen("list").load_posts()  # ← charge les posts
+        self.root.get_screen("list").load_posts()  
 
     def go_post(self):
         self.root.current = "postscreen"
