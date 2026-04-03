@@ -68,6 +68,61 @@ class MyApp(MDApp):
 
     def go_post(self):
         self.root.current = "postscreen"
+        
+    def _format_time(self, field, text):
+        digits = ''.join(filter(str.isdigit, text))
+        
+        if len(digits) >= 3:
+            formatted = digits[:2] + ':' + digits[2:4]
+        else:
+            formatted = digits
+        
+        if field.text != formatted:
+            field.text = formatted
+            
+    def valider(self):
+        tarif_text = self.root.ids.tarif.text
+        
+        if not tarif_text:
+            print("Tarif vide")
+            return
+        
+        try:
+            tarif = float(tarif_text)
+            if tarif < 0:
+                self.root.ids.tarif.error = True
+                self.root.ids.tarif.helper_text = "Le tarif ne peut pas être négatif"
+            else:
+                print(f"Tarif valide : {tarif} Ar")
+        except ValueError:
+            self.root.ids.tarif.error = True
+            
+    def _format_contact(self, field, text):
+       
+        digits = ''.join(filter(str.isdigit, text))
+    
+        digits = digits[:10]
+
+        operateurs_valides = ('032', '033', '034', '038')
+        if len(digits) >= 3:
+            if not digits.startswith(operateurs_valides):
+                field.error = True
+                field.helper_text = "Numéro invalide — commence par 032, 033, 034 ou 038"
+            else:
+                field.error = False
+                field.helper_text = "Doit commencer par 032, 033, 034, 038"
+
+        if len(digits) >= 8:
+            formatted = f"{digits[:3]} {digits[3:5]} {digits[5:8]} {digits[8:10]}"
+        elif len(digits) >= 5:
+            formatted = f"{digits[:3]} {digits[3:5]} {digits[5:]}"
+        elif len(digits) >= 3:
+            formatted = f"{digits[:3]} {digits[3:]}"
+        else:
+            formatted = digits
+
+        if field.text != formatted:
+            field.text = formatted
 
     def edit_post(self, index):
         if index < 0 or index >= len(self.posts):

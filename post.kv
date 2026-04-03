@@ -30,14 +30,22 @@
                 MDTextField:
                     id: debut
                     hint_text: "Heure début"
+                    max_text_length: 5
+                    on_text: app._format_time(self, self.text)
 
                 MDTextField:
                     id: fin
                     hint_text: "Heure fin"
+                    max_text_length: 5
+                    on_text: app._format_time(self, self.text)
 
                 MDTextField:
                     id: tarif
                     hint_text: "Tarif (Ar)"
+                    input_filter: "float"
+                    max_text_length: 10
+                    helper_text: "ex: 1500 ou 1500.50"
+                    helper_text_mode: "on_focus"
 
                 MDTextField:
                     id: moto
@@ -45,8 +53,11 @@
 
                 MDTextField:
                     id: contact
-                    hint_text: "Contact"
-
+                    hint_text: "Contact (ex: 034 12 345 67)"
+                    helper_text: "Doit commencer par 032, 033, 034, 038"
+                    helper_text_mode: "on_focus"
+                    max_text_length: 14
+                    on_text: app._format_contact(self, self.text)
                 Button:
                     text: "Publier"
                     background_color: 0.05, 0.1, 0.3, 1    # ← remplace md_bg_color

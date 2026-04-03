@@ -53,7 +53,8 @@ class PostScreen(Screen):
     def clear_fields(self):
         for f in self.ids:
             self.ids[f].text = ""
-
+            
+    
 
 class ListScreen(Screen):
 
