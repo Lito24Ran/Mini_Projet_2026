@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, HTTPException
-from backend.Schemas.demande import DemandeResponse, CreateDemande
 from fastapi import UploadFile, File
 from sqlalchemy.orm import Session
 from backend.models.demande import Demande

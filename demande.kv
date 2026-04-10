@@ -1,0 +1,146 @@
+<DemandePublication>:
+    BoxLayout:
+        orientation: "vertical"
+        size: root.size
+        pos: root.pos
+        padding: dp(20)
+        spacing: dp(15)
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # ── Titre ────────────────────────────────
+        Label:
+            text: "Demande de publication"
+            font_size: dp(20)
+            bold: True
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: dp(40)
+            halign: "left"
+            text_size: self.size
+
+        # ── Zone upload fichier 1 ─────────────────
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: dp(100)
+            spacing: dp(8)
+
+            Label:
+                text: "Fichier 1"
+                font_size: dp(14)
+                bold: True
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: dp(20)
+                halign: "left"
+                text_size: self.size
+
+            BoxLayout:
+                size_hint_y: None
+                height: dp(50)
+                spacing: dp(10)
+
+                # Zone fichier
+                BoxLayout:
+                    size_hint_x: 0.7
+
+                    canvas.before:
+                        Color:
+                            rgba: 0.93, 0.93, 0.93, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(8)]
+
+                    Label:
+                        id: nom_fichier_1
+                        text: "Photo de la facture de la moto"
+                        font_size: dp(12)
+                        color: 0.5, 0.5, 0.5, 1
+                        halign: "left"
+                        text_size: self.size
+                        padding: [dp(10), 0]
+
+                # Bouton choisir
+                Button:
+                    text: "Parcourir"
+                    size_hint_x: 0.3
+                    background_color: 0.23, 0.35, 0.6, 1
+                    color: 1, 1, 1, 1
+                    font_size: dp(12)
+                    on_press: root.choisir_fichier_1()
+
+        # ── Zone upload fichier 2 ─────────────────
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: dp(100)
+            spacing: dp(8)
+
+            Label:
+                text: "Fichier 2"
+                font_size: dp(14)
+                bold: True
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: dp(20)
+                halign: "left"
+                text_size: self.size
+
+            BoxLayout:
+                size_hint_y: None
+                height: dp(50)
+                spacing: dp(10)
+
+                # Zone fichier
+                BoxLayout:
+                    size_hint_x: 0.7
+
+                    canvas.before:
+                        Color:
+                            rgba: 0.93, 0.93, 0.93, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(8)]
+
+                    Label:
+                        id: nom_fichier_2
+                        text: "Photo de l' assurence"
+                        font_size: dp(12)
+                        color: 0.5, 0.5, 0.5, 1
+                        halign: "left"
+                        text_size: self.size
+                        padding: [dp(10), 0]
+
+                # Bouton choisir
+                Button:
+                    text: "Parcourir"
+                    size_hint_x: 0.3
+                    background_color: 0.23, 0.35, 0.6, 1
+                    color: 1, 1, 1, 1
+                    font_size: dp(12)
+                    on_press: root.choisir_fichier_2()
+
+        # ── Espace vide ───────────────────────────
+        Widget:
+            size_hint_y: 1
+
+        # ── Bouton Demander ───────────────────────
+        Button:
+            text: "Demander"
+            size_hint_y: None
+            height: dp(50)
+            background_color: 12/255, 24/255, 75/255, 1
+            color: 1, 1, 1, 1
+            font_size: dp(16)
+            bold: True
+            on_press: root.demander()
+
+           

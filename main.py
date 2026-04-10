@@ -13,6 +13,7 @@ from kivy_garden.mapview import MapMarker
 from barreRetour import BarreRetour
 from post import PostScreen, ListScreen
 from Page_Notification import PageNotification
+from demande import DemandePublication
 from kivy.properties import StringProperty, BooleanProperty
 
 # charger le KV
