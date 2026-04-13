@@ -8,6 +8,7 @@ class CreationPublication(BaseModel):
     tarif:str
     moto:str
     contacte: str
+    lieu: str
 
 
 class PublicationResponse(BaseModel):
@@ -16,6 +17,7 @@ class PublicationResponse(BaseModel):
     heure_fin: str
     tarif:str
     moto:str
+    lieu:str
     contacte: Optional[int] = None
     
     

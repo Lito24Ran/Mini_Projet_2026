@@ -16,7 +16,8 @@ async def creationPublication(creation: CreationPublication, db:Session = Depend
         heure_fin= creation.heure_fin,
         tarif = creation.tarif,
         moto = creation.moto,
-        Contacte = creation.contacte
+        Contacte = creation.contacte,
+        lieu = creation.lieu
     )
     
     db.add(creation_publication)
@@ -55,3 +56,15 @@ async def suppression(pub_id:int, db:Session= Depends(get_db)):
 async def allPublication(db:Session = Depends(get_db)):
     publication = db.query(Publication).all()
     return publication
+
+@router.get("/get_search/{lieu}", response_model=List[PublicationResponse])
+async def filtrer_selon_lieu(lieu: str, db:Session = Depends(get_db)):
+    moto_dans_le_lieu = db.query(Publication).filter(Publication.lieu == lieu).all()
+    
+    if not moto_dans_le_lieu:
+        raise HTTPException(
+            status_code=404,
+            detail="Aucun moto trouver dans ce lieu"
+        )
+    
+    return moto_dans_le_lieu

@@ -12,6 +12,7 @@ class Publication(Base):
     tarif = Column(String, nullable=False)
     moto = Column(String , nullable= False)
     Contacte = Column(Integer, nullable=False)
+    lieu = Column(String, nullable=False)
     
     def __repr__(self):
         return f"Publication {self.heure_debut}, {self.heure_fin}, {self.tarif}, {self.moto}, {self.Contacte}"
