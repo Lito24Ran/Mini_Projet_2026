@@ -88,7 +88,8 @@ class MainWidget(Screen) :
         # Clock.schedule_once(self.charger_donnees, 0)
         
     def on_server_data(self, liste_moto):
-        pass
+        if 'recycleViews' in self.ids:
+            self.ids['recycleViews'].data = liste_moto
     
     def on_enter(self):                        
         app = MDApp.get_running_app()           

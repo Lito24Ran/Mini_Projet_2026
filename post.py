@@ -9,7 +9,7 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.label import MDLabel
 from kivymd.uix.list import MDList
 from kivymd.uix.snackbar import MDSnackbar
-
+from http_client import HttpClient
 
 #Builder.load_file("post.kv")
 
@@ -17,8 +17,17 @@ class PostScreen(Screen):
     
     def publish_post(self):
         app = MDApp.get_running_app() 
-        ids = self.ids                 
-
+        ids = self.ids   
+         
+        HttpClient().creation_publication(
+            ids.debut.text.strip(),
+            ids.fin.text.strip(),
+            ids.tarif.text.strip(),
+            ids.moto.text.strip(),
+            ids.contact.text.strip(),
+            ids.depart.text.strip(),
+        )
+        
         data = {
             "zone":    ids.zone.text.strip(),
             "depart":  ids.depart.text.strip(),

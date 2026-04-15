@@ -11,7 +11,7 @@ class Publication(Base):
     heure_fin = Column(String, nullable= False)
     tarif = Column(String, nullable=False)
     moto = Column(String , nullable= False)
-    Contacte = Column(Integer, nullable=False)
+    Contacte = Column(String, nullable=False)
     lieu = Column(String, nullable=False)
     
     def __repr__(self):

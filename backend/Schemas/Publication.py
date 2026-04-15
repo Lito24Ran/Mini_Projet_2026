@@ -18,7 +18,7 @@ class PublicationResponse(BaseModel):
     tarif:str
     moto:str
     lieu:str
-    contacte: Optional[int] = None
+    contacte: Optional[str] = None
     
     
     class config:
