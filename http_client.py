@@ -26,8 +26,6 @@ class HttpClient:
                 
         req = UrlRequest(url,  on_success=donne_recus)
         
-
-
     def creation_publication(self, heure_depart, heure_fin, tarif, moto, contacte, lieu):
 
         url = "http://127.0.0.1:8000/publication/createpub/"

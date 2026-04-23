@@ -6,6 +6,7 @@ from typing import Optional
 class DemandeResponse(BaseModel):
     id: int
     photo_facture: str
+    photo_assurence :str
     
     class config:
         orm_mode = True
@@ -13,3 +14,4 @@ class DemandeResponse(BaseModel):
 
 class CreateDemande(BaseModel):
     photo_facture:str
+    photo_assurence : str

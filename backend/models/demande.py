@@ -1,4 +1,4 @@
-from sqlalchemy import String,Column, Integer
+from sqlalchemy import String,Column, Integer, Boolean
 from backend.Schemas.Publication import PublicationResponse
 from backend.Core.database import Base
 
@@ -7,6 +7,8 @@ class Demande(Base):
     
     id = Column(Integer, primary_key= True, index=True)
     photo_facture = Column(String, nullable=False)
+    photo_assurence = Column(String, nullable=False)
+    Approuver = Column(Boolean, default=False)
     
     def __repr__(self):
         return f"Demande {self.photo_facture}"
