@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi import UploadFile, File
-from sqlalchemy.orm import Session
+from sqlalchemy import func
 from backend.models.demande import Demande
 from backend.Core.database import get_db
 from sqlalchemy.orm import Session
@@ -47,3 +47,21 @@ async def envoye_demande(
     db.refresh(ajout_bdd)
 
     return ajout_bdd
+
+@router.get("/nombreDemande")
+async def nombre_demande(db: Session= Depends(get_db)):
+    nombre = db.query(func.count(Demande.id)).scalar()
+    return {"nombre de demande : ", nombre}
+
+@router.get("/approuver")
+async def nombre_approuver(db: Session = Depends(get_db)):
+    nombre = db.query(func.count(Demande.id)).filter(Demande.Approuver == True).scalar()
+    return {"nombre d' aprobation : ", nombre}
+
+@router.get("/rejeter")
+async def nombre_rejeter(db:Session = Depends(get_db)):
+    nombre = db.query(func.count(Demande.id)).filter(Demande.Approuver == False).scalar()
+    return {"Nombre de demande rejeter : ", nombre}
+
+
+    
