@@ -51,17 +51,17 @@ async def envoye_demande(
 @router.get("/nombreDemande")
 async def nombre_demande(db: Session= Depends(get_db)):
     nombre = db.query(func.count(Demande.id)).scalar()
-    return {"nombre de demande : ", nombre}
+    return nombre
 
 @router.get("/approuver")
 async def nombre_approuver(db: Session = Depends(get_db)):
     nombre = db.query(func.count(Demande.id)).filter(Demande.Approuver == True).scalar()
-    return {"nombre d' aprobation : ", nombre}
+    return {nombre}
 
 @router.get("/rejeter")
 async def nombre_rejeter(db:Session = Depends(get_db)):
     nombre = db.query(func.count(Demande.id)).filter(Demande.Approuver == False).scalar()
-    return {"Nombre de demande rejeter : ", nombre}
+    return {nombre}
 
 
     
