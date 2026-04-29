@@ -2,6 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import StringProperty
 from kivy.lang import Builder
 from plyer import filechooser
+from http_client import HttpClient
 ##Il faut installer pyler avec : pip install plyer
 
 Builder.load_file('demande.kv')
@@ -31,6 +32,11 @@ class DemandePublication(Screen):
     def demander(self):
         fichier_1 = self.ids.nom_fichier_1.text
         fichier_2 = self.ids.nom_fichier_2.text
+        
+        HttpClient().demande_de_publication(
+            fichier_1,
+            fichier_2
+        )
 
         if fichier_1 == "Aucun fichier choisi":
             print("❌ Fichier 1 manquant")

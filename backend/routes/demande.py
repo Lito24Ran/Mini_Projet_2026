@@ -77,6 +77,11 @@ async def update(
     return demande
     
 
+@router.get("/demandeApprouver", response_model= List[DemandeResponse])
+async def toutDemande(db:Session = Depends(get_db)):
+    demande_approuver = db.query(Demande).filter(Demande.Approuver.is_(True)).all()
+    return demande_approuver
+
 @router.get("/toutLesDemandes", response_model= List[DemandeResponse])
 async def toutDemande(db:Session = Depends(get_db)):
     all = db.query(Demande).all()

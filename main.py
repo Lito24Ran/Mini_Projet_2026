@@ -14,6 +14,7 @@ from barreRetour import BarreRetour
 from post import PostScreen, ListScreen
 from Page_Notification import PageNotification
 from demande import DemandePublication
+from http_client import HttpClient
 from kivy.properties import StringProperty, BooleanProperty
 
 # charger le KV
@@ -99,7 +100,6 @@ class MyApp(MDApp):
             self.root.ids.tarif.error = True
             
     def _format_contact(self, field, text):
-       
         digits = ''.join(filter(str.isdigit, text))
     
         digits = digits[:10]
@@ -135,6 +135,15 @@ class MyApp(MDApp):
             if key in ids:
                 ids[key].text = post[key]
         self.root.current = "postscreen"
+    
+    def naviguer_demande(self):
+        HttpClient().demande_approuver(self.aller_page)
+    
+    def aller_page(self, approuvee):    
+        if approuvee:
+            self.root.push("postscreen")
+        else:
+            self.root.push("Demande")
 
 
 if __name__ == '__main__':
