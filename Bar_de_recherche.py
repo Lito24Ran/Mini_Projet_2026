@@ -29,9 +29,11 @@ class Bar_de_recherche(FloatLayout):
             for child in self.mapview.children[:]:
                 if isinstance(child, MapMarkerPopup):
                     self.mapview.remove_widget(child)
-
+                    
+            VIEWBOX_ANTANANARIVO = "47.4,-18.8,47.7,-19.0"
+            
             # requête vers OpenStreetMap
-            url = f"https://nominatim.openstreetmap.org/search?q={self.texte}&format=json&limit=1"
+            url = f"https://nominatim.openstreetmap.org/search?q={self.texte}&format=json&limit=1&countrycodes=mg&viewbox={VIEWBOX_ANTANANARIVO}&bounded=1"
 
             headers = {
                 "User-Agent": "MiniProjetKivyMap/1.0"
@@ -42,7 +44,7 @@ class Bar_de_recherche(FloatLayout):
             data = response.json()
             
             app = MDApp.get_running_app()
-            app.manager.push("liste_moto") 
+            # app.manager.push("liste_moto") 
             app.lieu_recherche = self.texte  
             
             if data:
