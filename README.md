@@ -8,3 +8,6 @@
 
 # Installer mapview
     garden install mapview
+#Installer request
+    pip install requests
+    
