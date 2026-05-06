@@ -12,12 +12,13 @@ router = APIRouter(prefix= "/publication", tags=["publication"])
 @router.post("/createpub/", response_model=PublicationResponse )
 async def creationPublication(creation: CreationPublication, db:Session = Depends(get_db)):
     creation_publication = Publication(
-        heure_debut= creation.heure_debut,
-        heure_fin= creation.heure_fin,
+        nom_personne = creation.nom_personne,
+        nom_du_lieu = creation.lieu_nom,
+        latitude = creation.latitude,
+        longitude = creation.longitude,
         tarif = creation.tarif,
-        moto = creation.moto,
-        Contacte = creation.contacte,
-        lieu = creation.lieu
+        heure_publication = creation.heure_publication,
+        description = creation.description
     )
     
     db.add(creation_publication)
@@ -59,7 +60,7 @@ async def allPublication(db:Session = Depends(get_db)):
 
 @router.get("/get_search/{lieu}", response_model=List[PublicationResponse])
 async def filtrer_selon_lieu(lieu: str, db:Session = Depends(get_db)):
-    moto_dans_le_lieu = db.query(Publication).filter(Publication.lieu == lieu).all()
+    moto_dans_le_lieu = db.query(Publication).filter(Publication.nom_du_lieu == lieu).all()
     
     if not moto_dans_le_lieu:
         raise HTTPException(

@@ -6,7 +6,6 @@ from backend.routes import demande as demandeRouter
 from backend.Core.database import engine
 from fastapi.middleware.cors import CORSMiddleware
 
-
 publicationModel.Base.metadata.create_all(bind=engine )
 demandeModel.Base.metadata.create_all(bind= engine)
 

@@ -3,24 +3,27 @@ from pydantic import BaseModel, Field
 from typing import Optional
 
 class CreationPublication(BaseModel):
-    heure_debut : str
-    heure_fin: str
-    tarif:str
-    moto:str
+    nom_personne: str    
+    lieu_nom: str         
+    latitude: float       
+    longitude: float      
+    heure_publication:str
+    tarif: str
     contacte: str
-    lieu: str
+    description :str
 
 
 class PublicationResponse(BaseModel):
     id: int
-    heure_debut : str
-    heure_fin: str
-    tarif:str
-    moto:str
-    lieu:str
+    nom_personne: str     
+    nom_du_lieu: str       
+    latitude: float      
+    longitude: float     
+    heure_publication: str
+    tarif: str
     contacte: Optional[str] = None
+    moto: Optional[str] = None     
+    description: str
     
-    
-    class config:
-        orm_mode = True
-        error: str
+    class Config:
+        from_attributes = True

@@ -82,6 +82,25 @@ class MyApp(MDApp):
         if field.text != formatted:
             field.text = formatted
             
+    def edit_post(self, index):
+        # 1. On mémorise l'index qu'on modifie
+        self.edit_index = index
+        
+        # 2. On récupère les données du post
+        post_data = self.posts[index]
+        
+        # 3. On accède à l'écran 'post' (PostScreen)
+        post_screen = self.root.get_screen("post")
+        
+        # 4. On remplit les champs avec les données existantes
+        post_screen.ids.nom_personne.text = post_data.get('nom_personne', '')
+        post_screen.ids.tarif.text = str(post_data.get('tarif', ''))
+        post_screen.ids.contact.text = post_data.get('contact', '')
+        post_screen.ids.description.text = post_data.get('description', '')
+        
+        # 5. On change d'écran vers le formulaire
+        self.root.current = "post"
+        
     def valider(self):
         tarif_text = self.root.ids.tarif.text
         

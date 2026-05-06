@@ -27,17 +27,19 @@ class HttpClient:
                 
         req = UrlRequest(url,  on_success=donne_recus)
         
-    def creation_publication(self, heure_depart, heure_fin, tarif, moto, contacte, lieu):
+    def creation_publication(self, nom, lieu, lat, lon, heure_pub, tarif, contact, description):
 
         url = "http://127.0.0.1:8000/publication/createpub/"
 
         params = {
-                'heure_debut': heure_depart,
-                'heure_fin': heure_fin,
-                'tarif': tarif,
-                'moto': moto,
-                'contacte': contacte,
-                'lieu': lieu
+            "nom_personne": nom,
+            "lieu_nom": lieu,   
+            "latitude": float(lat) if lat else 0.0,   # ✅ conversion sûre
+            "longitude": float(lon) if lon else 0.0,  # ✅ conversion sûre
+            "heure_publication": str(heure_pub), 
+            "tarif": tarif,
+            "contacte": contact,
+            "description": description
         }
 
         headers = {
@@ -51,7 +53,10 @@ class HttpClient:
         def failure(req, result):
             print("❌ Échec de l'envoi")
             print(result)
-
+            
+        # print("params:", params)
+        # print("types:", {k: type(v) for k, v in params.items()})
+        
         UrlRequest(
             url,
             on_success=success,

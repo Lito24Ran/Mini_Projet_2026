@@ -12,7 +12,6 @@ class Mymap(FloatLayout):
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # La liaison se fera via le KV
     
     def on_mapview(self, instance, value):
         """Appelé quand mapview est assigné"""

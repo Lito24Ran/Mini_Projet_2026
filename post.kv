@@ -1,5 +1,5 @@
 <PostScreen>:
-    name: "post"                        # ← AJOUT obligatoire
+    name: "post"                       
 
     MDBoxLayout:
         orientation: "vertical"
@@ -9,82 +9,114 @@
             md_bg_color: 0.05, 0.1, 0.3, 1
             specific_text_color: 1, 1, 1, 1
             left_action_items: [["arrow-left", lambda x: app.go_main()]] 
-            right_action_items: [["format-list-bulleted", lambda x: app.go_list()]]  # ← app
+            right_action_items: [["format-list-bulleted", lambda x: app.go_list()]]
 
         ScrollView:
             MDBoxLayout:
+                id: posts_box
                 orientation: "vertical"
                 padding: dp(20)
                 spacing: dp(15)
                 size_hint_y: None
                 height: self.minimum_height
 
+                # --- NOUVEAU : NOM DE LA PERSONNE ---
                 MDTextField:
-                    id: zone
-                    hint_text: "Zone"
+                    id: nom_personne
+                    hint_text: "Votre Nom"
+                    icon_left: "account"
 
-                MDTextField:
-                    id: depart
-                    hint_text: "Point de départ"
 
-                MDTextField:
-                    id: debut
-                    hint_text: "Heure début"
-                    max_text_length: 5
-                    on_text: app._format_time(self, self.text)
-
-                MDTextField:
-                    id: fin
-                    hint_text: "Heure fin"
-                    max_text_length: 5
-                    on_text: app._format_time(self, self.text)
+                # --- NOUVEAU : COORDONNÉES (Peuvent être masquées ou en lecture seule plus tard) ---
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    spacing: dp(10)
+                    size_hint_y: None
+                    height: self.minimum_height
+                    
 
                 MDTextField:
                     id: tarif
                     hint_text: "Tarif (Ar)"
                     input_filter: "float"
                     max_text_length: 10
-                    helper_text: "ex: 1500 ou 1500.50"
+                    helper_text: "ex: 1500"
                     helper_text_mode: "on_focus"
-
-                MDTextField:
-                    id: moto
-                    hint_text: "Moto"
 
                 MDTextField:
                     id: contact
                     hint_text: "Contact (ex: 034 12 345 67)"
-                    helper_text: "Doit commencer par 032, 033, 034, 038"
+                    helper_text: "Orange, Airtel, Telma"
                     helper_text_mode: "on_focus"
                     max_text_length: 14
                     on_text: app._format_contact(self, self.text)
+                
+                MDTextField:
+                    id: description
+                    hint_text: "Texte"
+                    helper_text_mode: "on_focus"
+                    height: dp(200)
+
                 Button:
                     text: "Publier"
-                    background_color: 0.05, 0.1, 0.3, 1    # ← remplace md_bg_color
-                    background_normal: ""                    # ← supprime le style par défaut
-                    color: 1, 1, 1, 1                        # ← texte blanc
+                    background_color: 0.05, 0.1, 0.3, 1
+                    background_normal: ""
+                    color: 1, 1, 1, 1
                     size_hint_x: 1
                     size_hint_y: None
                     height: dp(50)
                     font_size: dp(16)
                     bold: True
-                    on_press: root.publish_post()
-                    radius: [50]
-
-
-
+                    on_press: root.publish_post() 
+                    
 <ListScreen>:
     name: "list"
+
+    # Fond de l'écran (optionnel, pour un look plus propre)
+    md_bg_color: 0.95, 0.95, 0.97, 1
 
     MDBoxLayout:
         orientation: "vertical"
 
+        # --- BARRE D'OUTILS ---
         MDTopAppBar:
-            title: "Mes courses publiées"
-            md_bg_color: 0.05,0.1,0.3,1
-            specific_text_color: 1,1,1,1
-            left_action_items: [["arrow-left", lambda x: app.go_post()]]
+            title: "Courses Disponibles"
+            elevation: 4
+            md_bg_color: 0.05, 0.1, 0.3, 1
+            specific_text_color: 1, 1, 1, 1
+            left_action_items: [["arrow-left", lambda x: app.go_main()]]
+            right_action_items: [["refresh", lambda x: root.load_posts()]]
 
+        # --- ZONE DE DÉFILEMENT ---
         ScrollView:
-            MDList:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            MDBoxLayout:
+                # Cet ID est celui que tu utilises dans ton code Python
                 id: posts_box
+                orientation: "vertical"
+                padding: dp(16)
+                spacing: dp(16)
+                
+                # Très important : permet au layout de grandir avec les cartes
+                size_hint_y: None
+                height: self.minimum_height
+                
+                # Message affiché si la liste est vide (optionnel)
+                MDLabel:
+                    id: empty_label
+                    text: "Recherche de courses en cours..."
+                    halign: "center"
+                    theme_text_color: "Secondary"
+                    size_hint_y: None
+                    height: dp(100) if not posts_box.children else 0
+                    opacity: 1 if not posts_box.children else 0
+
+        # --- BOUTON FLOTTANT (Optionnel : pour ajouter une course rapidement) ---
+        MDFloatingActionButton:
+            icon: "plus"
+            md_bg_color: 0.05, 0.1, 0.3, 1
+            text_color: 1, 1, 1, 1
+            pos_hint: {"center_x": .85, "center_y": .1} 
+            on_release: app.manager.push("postscreen")
