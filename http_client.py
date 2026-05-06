@@ -15,7 +15,7 @@ class HttpClient:
                 container_de_donne = []
                 
                 for item in data:
-                    print(item["id"], item["heure_debut"])
+                    print(item["id"], item["nom_personne"])
                     container_de_donne.append(item)
                 print("tableau container de donne : " , container_de_donne)
                 ##Areter ici 
