@@ -18,7 +18,6 @@ class HttpClient:
                     print(item["id"], item["nom_personne"])
                     container_de_donne.append(item)
                 print("tableau container de donne : " , container_de_donne)
-                ##Areter ici 
                 if on_complite:
                     on_complite(container_de_donne)
 
@@ -34,8 +33,8 @@ class HttpClient:
         params = {
             "nom_personne": nom,
             "lieu_nom": lieu,   
-            "latitude": float(lat) if lat else 0.0,   # ✅ conversion sûre
-            "longitude": float(lon) if lon else 0.0,  # ✅ conversion sûre
+            "latitude": float(lat) if lat else 0.0,  
+            "longitude": float(lon) if lon else 0.0,  
             "heure_publication": str(heure_pub), 
             "tarif": tarif,
             "contacte": contact,
