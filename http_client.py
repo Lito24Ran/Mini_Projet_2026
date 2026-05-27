@@ -5,6 +5,26 @@ import base64
 
 class HttpClient:
     
+    def all_publication(self, on_complite):
+        url = f"http://127.0.0.1:8000/publication/all_publication"
+        
+        def donne(req, result):
+            try:
+                data = result
+                contain_data = []
+                
+                for item in data:
+                    print(item["id"], item["nom_personne"])
+                    contain_data.append(item)
+                
+                if on_complite:
+                    on_complite(contain_data)
+                    
+            except Exception as e:
+                print("Erreur : ", e)
+            
+        req = UrlRequest(url, on_success = donne)
+    
     def get_publication(self, lieu, on_complite):
         url = f"http://127.0.0.1:8000/publication/get_search/{lieu}"
                 

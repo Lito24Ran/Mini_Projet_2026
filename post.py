@@ -12,11 +12,14 @@ from kivymd.uix.snackbar import MDSnackbar
 from http_client import HttpClient
 from geopy.geocoders import Nominatim
 import requests
+from kivy.uix.popup import Popup
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.label import Label
 from kivy.clock import Clock
 import threading
 from plyer import gps
 class PostScreen(Screen):
-    # Variables pour stocker la position en mémoire
     lat = 0.0
     lon = 0.0
     adresse = ""
@@ -25,7 +28,6 @@ class PostScreen(Screen):
         self.get_precise_ip_location()
 
     def get_precise_ip_location(self):
-    # Token gratuit disponible sur leur site
         access_token = '02cf4d44d62a79'
         url = f"https://ipinfo.io/json?token={access_token}"
         
@@ -86,36 +88,6 @@ class PostScreen(Screen):
             self.ids.description.text.strip()   
         )
         
-        # 2. Ton dictionnaire data mis à jour (si tu en as encore besoin pour autre chose)
-        # data = {
-        #     "nom_personne": ids.nom_personne.text.strip(),
-        #     "latitude":     self.lat,
-        #     "longitude":    self.lon,
-        #     "heure_pub": heure_utc,
-        #     "tarif":        ids.tarif.text.strip(),
-        #     "contact":      ids.contact.text.strip(),
-        # }
-
-        # champs_obligatoires = {
-        #     "zone":    "Zone obligatoire",
-        #     "depart":  "Point de départ obligatoire",
-        #     "contact": "Contact obligatoire",
-        # }
-        # for champ, message in champs_obligatoires.items():
-        #     if not data[champ]:
-        #         MDSnackbar(MDLabel(text=message)).open()
-        #         return
-
-        # if app.edit_index is not None:          
-        #     app.posts[app.edit_index] = data   
-        #     app.edit_index = None
-        #     MDSnackbar(MDLabel(text="Post modifé")).open()
-        # else:
-        #     app.posts.append(data)             
-        #     MDSnackbar(MDLabel(text="course publier")).open()
-
-        # self.clear_fields()
-        # app.go_list()     
     def clear_fields(self):
         for f in self.ids:
             self.ids[f].text = ""

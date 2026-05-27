@@ -1,15 +1,20 @@
 <Mymap>:
     # Liaison des propriétés
-    mapview: mapview_widget
+    mapviews: mapview_widget
     bar_recherche: bar_recherche_widget
     
     FloatLayout:
         MapView:
-            id: mapview_widget  # ← ID important !
+            id: mapview_widget
             lat: -18.8792
             lon: 47.5079
             zoom: 10
-        
+
+            MapMarker:
+                lat: -18.8792 
+                lon: 47.5079
+                source: './image/icons8-scooter-24.png' 
+
         Bar_de_recherche:
             id: bar_recherche_widget  # ← ID important !
             mapview: mapview_widget  # ← LIAISON CRUCIALE !
