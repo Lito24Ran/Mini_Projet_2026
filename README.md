@@ -1,4 +1,4 @@
-# Pour commenr un projet en Kivy
+# Pour commencer un projet en Kivy
 
     Installer Kivy : pip install kivy
     Installer Kivymd : pip install kivymd
@@ -8,3 +8,6 @@
 
 # Installer mapview
     garden install mapview
+# Installer request
+    pip install requests
+    
