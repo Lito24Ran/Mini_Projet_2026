@@ -30,8 +30,8 @@ class Mymap(FloatLayout):
                     lat = float(lat_str)
                     lon = float(lon_str)
                     
-                    marker = MapMarker(lat=lat, lon=lon)
-                    self.ids.mapview_widget.add_marker(marker)
+                    marker = MapMarker(lat=lat, lon=lon, source='./image/icons8-scooter-24.png')
+                    self.ids.id_mapview.add_marker(marker)
                     print(f"📍 Marqueur ajouté avec succès à : {lat}, {lon}")
                 except ValueError:
                     pass
