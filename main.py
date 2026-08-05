@@ -5,7 +5,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from Navigation_screen_Manager import NavigationScreenManager
 from map2 import Mymap
 from kivy.uix.boxlayout import BoxLayout
-from Progress_bar import ProgressBarWidget
+# from Progress_bar import ProgressBarWidget
 from Container_liste_moto import MainWidget
 from kivy.properties import ObjectProperty
 from kivy.core.window import Window

@@ -4,6 +4,7 @@ from kivymd.app import MDApp
 from Container_liste_moto import MotoWidget as detailmoto
 from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty, StringProperty, BooleanProperty
+
 Builder.load_file("detail.kv")
 
 class DetailTaximoto(Screen): 
